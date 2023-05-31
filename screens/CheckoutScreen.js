@@ -4,8 +4,10 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import colors from '../utils/constants/colors'
 import mtn from '../assets/kind.png'
 import MobileProvider from '../components/MobileProvider'
+import { useNavigation } from '@react-navigation/native'
 
 const CheckoutScreen = () => {
+    const navigation=useNavigation();
     const providers=[{image:mtn,name:'MTN Mobile Money'},{image:mtn,name:'Airtel Money'},{image:mtn,name:'Card'}]
     return (
         <View style={styles.all}>
@@ -36,7 +38,7 @@ const CheckoutScreen = () => {
                         <MobileProvider provider={item}/>
                     )}/>
                     <Text style={styles.notice}>We will send you an order details to your email after the successful payment</Text>
-                <TouchableOpacity style={styles.paymentBtn}>
+                <TouchableOpacity style={styles.paymentBtn} onPress={()=>navigation.navigate("Success")}>
                     <Icon name='lock' style={styles.paymentIcon}></Icon>
                     <Text style={styles.paymentText}>Pay for the order</Text>
                 </TouchableOpacity>
