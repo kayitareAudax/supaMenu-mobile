@@ -1,9 +1,12 @@
 import React from 'react'
-import { View, TouchableOpacity, Text, Image, StyleSheet } from 'react-native'
+import { View, TouchableOpacity, Text, Image, StyleSheet, FlatList } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import colors from '../utils/constants/colors'
+import mtn from '../assets/kind.png'
+import MobileProvider from '../components/MobileProvider'
 
 const CheckoutScreen = () => {
+    const providers=[{image:mtn,name:'MTN Mobile Money'},{image:mtn,name:'Airtel Money'},{image:mtn,name:'Card'}]
     return (
         <View style={styles.all}>
             <View style={styles.topBar}>
@@ -28,6 +31,17 @@ const CheckoutScreen = () => {
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.mobile}><Text style={styles.mobileText}>Mobile & Cash</Text></TouchableOpacity>
                 </View>
+                <View style={styles.providers}>
+                    <FlatList style={styles.list} data={providers} renderItem={({item})=>(
+                        <MobileProvider provider={item}/>
+                    )}/>
+                    <Text style={styles.notice}>We will send you an order details to your email after the successful payment</Text>
+                <TouchableOpacity style={styles.paymentBtn}>
+                    <Icon name='lock' style={styles.paymentIcon}></Icon>
+                    <Text style={styles.paymentText}>Pay for the order</Text>
+                </TouchableOpacity>
+                </View>
+                
         </View>
     )
 }
@@ -96,11 +110,11 @@ const styles = StyleSheet.create({
         fontWeight: '500'
     },
     touchables: {
-        marginTop:-20,
+        marginTop:-15,
         display: 'flex',
         flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent:'space-around',
+        justifyContent:'center',
+        marginLeft:40,
         borderRadius: 10,
         backgroundColor: colors.greenColor,
         width: '80%'
@@ -135,6 +149,49 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 17,
         textAlign: 'center'
+    },
+    providers:{
+        marginTop:40,
+        marginLeft:10,
+        display:'flex',
+        flexDirection:'column',
+        alignItems:'flex-start'
+    },
+    list:{
+        marginLeft:20
+    },
+    notice:{
+        color:'gray',
+        marginLeft:20,
+        opacity:0.8,
+        flexWrap:'wrap',
+        fontSize:14,
+        marginTop:30,
+        width:'80%'
+    },
+    paymentBtn:{
+        textAlign:'center',
+        paddingVertical:12,
+        borderRadius:10,
+        marginVertical:10,
+        backgroundColor:colors.greenColor,
+        display:'flex',
+        flexDirection:'row',
+        justifyContent:'center',
+        alignItems:'center',
+        width:'100%'
+    },
+    paymentIcon:{
+        color:'white',
+        fontSize:19,
+        fontWeight:'bold',
+        marginRight:10
+    },
+    paymentText:{
+        color:'white',
+        fontSize:19,
+        fontWeight:'700',
+        textAlign:'center',
     }
 })
 export default CheckoutScreen
