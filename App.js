@@ -8,13 +8,14 @@ import SearchScreen from './screens/SearchScreen';
 import NearbyRestaurants from './screens/NearbyRestaurants';
 import FactureScreen from './screens/FactureScreen';
 import CartScreen from './screens/CartScreen';
+import CheckoutScreen from './screens/CheckoutScreen';
 
 const Stack = createStackNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Cart">
+      <Stack.Navigator initialRouteName="Checkout">
         <Stack.Screen name="Welcome" component={WelcomeScreen} options={{headerShown: false}}/>
         <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}}/>
         <Stack.Screen name="Signup" component={SignupScreen} options={{headerShown: false}}/>
@@ -22,6 +23,7 @@ const App = () => {
         <Stack.Screen name="NearbyRestaurants" component={NearbyRestaurants} options={{headerShown: false}}/>
         <Stack.Screen name="Facture" component={FactureScreen} options={{headerShown: false}}/>
         <Stack.Screen name='Cart' component={CartScreen} options={{headerShown:false}}/> 
+        <Stack.Screen name='Checkout' component={CheckoutScreen} options={{headerShown:false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
